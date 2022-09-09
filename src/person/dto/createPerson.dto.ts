@@ -44,5 +44,5 @@ export class CreatePersonDto {
   @IsNotEmpty()
   @ValidateNested()
   @Type(() => CreateAddressDto)
-  addressDto: CreateAddressDto
+  address: CreateAddressDto
 }

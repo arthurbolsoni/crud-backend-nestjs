@@ -19,7 +19,7 @@ export class Person {
   @Column()
   birthday: Date;
 
-  @OneToMany(() => Address, (addresses) => addresses.person, {eager: true})
+  @OneToMany(() => Address, (addresses) => addresses.person, {eager: true, cascade: true})
   addresses: Address[]
 
   constructor(partial: Partial<Person>) {

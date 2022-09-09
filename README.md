@@ -1,6 +1,6 @@
 Antes de começar, certifique-se de preparar o ".env" file para rodar a aplicação com seu login do mySql e database;
 
-Inicie a aplicaçao atrávez do comando no console: "npm run migration:run' e 'npm run start:dev";
+Inicie a aplicaçao atrávez do comando no console: "npm install", "npm run migration:run' e 'npm run start:dev";
 Uma vez a aplicaçao rodando você terá acesso aos seguintes endpoints:
 
 # ENDPOINTS

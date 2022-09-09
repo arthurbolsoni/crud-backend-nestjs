@@ -18,7 +18,7 @@ export class PersonService {
 
   //create a person on the database using the validated data from dto type
   async create(createPersonDto: CreatePersonDto) {
-    const address = await this.addressService.create({...createPersonDto.addressDto})
+    const address = await this.addressService.create({...createPersonDto.address})
 
     const person = new Person({ ...createPersonDto, addresses: [address]});
     return await this.personRepository.save(person);
@@ -33,7 +33,6 @@ export class PersonService {
     })
   }
 
-  //precisa retornar erro ou valor
   async findOneById(id: number) {
     const person = await this.personRepository.findOne({
       where: {
@@ -50,7 +49,6 @@ export class PersonService {
     );
   }
 
-  //precisa retornar erro ou valor
   async update(id: number, updatePersonDto: UpdatePersonDto) {
     const updatedPerson = await this.personRepository.update(id, {
       ...updatePersonDto
@@ -60,7 +58,6 @@ export class PersonService {
     throw new HttpException('Person id not found', HttpStatus.NOT_FOUND);
   }
 
-  //precisa retornar erro ou valor
   //seek for person by id and delete it
   async remove(id: number) {
     const person = await this.findOneById(id);

@@ -16,6 +16,6 @@ export class AddressService {
   }
   async update(id: number, updateDto: UpdateAddressDto): Promise<boolean> {
     const updated = await this.addressPepository.update(id, { ...updateDto });
-    return Boolean(updated.affected); // if updated have updated return true, if return false
+    return Boolean(updated.affected);
   }
 }

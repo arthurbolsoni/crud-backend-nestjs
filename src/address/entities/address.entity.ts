@@ -31,7 +31,7 @@ export class Address {
   @Column()
   addressType: AddressType;
 
-  @ManyToOne(() => Person)
+  @ManyToOne(() => Person, person => person.addresses)
   person: Person;
 
   constructor(partial: Partial<Address>) {
