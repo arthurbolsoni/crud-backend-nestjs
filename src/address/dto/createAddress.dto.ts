@@ -1,5 +1,6 @@
 import { Transform, Type } from 'class-transformer';
 import {
+  Equals,
   IsDate,
   IsDateString,
   IsEnum,
@@ -18,43 +19,43 @@ import {
   MinDate,
   MinLength,
 } from 'class-validator';
+import { IsLengthEqual } from 'src/common/decorators/IsLengthEqual.decorator';
 import { MaxDateString } from 'src/common/decorators/MaxDateString.decorator';
 import { AddressType } from '../enum/address.enum';
 
 //DTO type to create a new user.
 export class CreateAddressDto {
   @IsNotEmpty()
-  @Min(9)
-  @Max(9)
+  @IsLengthEqual(9)
   CEP: string;
 
   @IsNotEmpty()
   @IsString()
-  logradouro: string;
+  street: string;
 
   @IsNotEmpty()
   @IsInt()
-  numero: number;
+  number: number;
 
   @IsNotEmpty()
   @IsString()
-  bairro: string;
+  district: string;
 
   @IsOptional()
   @IsString()
-  complemento: string;
+  addressLineTwo: string;
 
   @IsNotEmpty()
   @IsString()
-  cidade: string;
+  city: string;
 
   @IsNotEmpty()
-  @Length(2, 2)
+  @IsLengthEqual(2)
   @IsString()
   uf: string;
 
   @IsNotEmpty()
   @IsEnum(AddressType)
   @IsInt()
-  tipo: AddressType;
+  addressType: AddressType;
 }

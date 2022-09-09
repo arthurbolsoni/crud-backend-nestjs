@@ -20,12 +20,12 @@ const configService = new ConfigService();
       username: configService.get('MYSQL_USER'),
       password: configService.get('MYSQL_PASSWORD'),
       database: configService.get('MYSQL_DATABASE'),
+      migrationsRun: true,
       autoLoadEntities: true,
-      synchronize: false,
     }),
     AddressModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

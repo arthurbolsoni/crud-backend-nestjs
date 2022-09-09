@@ -16,8 +16,9 @@ export const AppDataSource = new DataSource({
   database: configService.get('MYSQL_DATABASE'),
   logging: false,
   synchronize: false,
+  migrationsRun: true,
   name: 'default',
-  entities: ['./src/**/**/**.entity{.ts,.js}'],
+  entities: ["dist/**/*.entity.js"],
   migrations: ['./src/orm/migration/*{.ts,.js}'],
   subscribers: ['./src/orm/subscriber/**/*{.ts,.js}'],
 });

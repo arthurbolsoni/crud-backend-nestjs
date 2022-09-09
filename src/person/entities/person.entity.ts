@@ -1,5 +1,5 @@
 import { Address } from 'src/address/entities/address.entity';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { personType } from '../enum/person.enum';
 
 @Entity()
@@ -10,8 +10,7 @@ export class Person {
   @Column()
   name: string;
 
-  // @Column({ unique: true })
-  @Column()
+  @Column({ unique: true })
   IdCard: string;
 
   @Column('int')
@@ -20,8 +19,8 @@ export class Person {
   @Column()
   birthday: Date;
 
-  @Column()
-  address: string;
+  @OneToMany(() => Address, (addresses) => addresses.person)
+  addresses: Address[]
 
   constructor(partial: Partial<Person>) {
     Object.assign(this, partial);

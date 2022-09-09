@@ -1,10 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Person } from 'src/person/entities/person.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { AddressType } from '../enum/address.enum';
 
 @Entity()
 export class Address {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   CEP: string;
@@ -19,7 +20,7 @@ export class Address {
   district: string;
 
   @Column()
-  AddressLineTwo: string;
+  addressLineTwo: string;
 
   @Column()
   city: string;
@@ -29,6 +30,9 @@ export class Address {
 
   @Column()
   addressType: AddressType;
+
+  @ManyToOne(() => Person)
+  person: Person;
 
   constructor(partial: Partial<Address>) {
     Object.assign(this, partial);

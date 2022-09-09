@@ -12,12 +12,15 @@ import {
   MaxDate,
   MaxLength,
   MinDate,
+  ValidateNested,
 } from 'class-validator';
+import { CreateAddressDto } from 'src/address/dto/createAddress.dto';
 import { Address } from 'src/address/entities/address.entity';
 import { MaxDateString } from 'src/common/decorators/MaxDateString.decorator';
 import { personType } from '../enum/person.enum';
 
 //DTO type to create a new user.
+// @FilterableOffsetConnection('addresses', () => CreateAddressDto)
 export class CreatePersonDto {
   @IsNotEmpty()
   @MaxLength(150)
@@ -39,5 +42,7 @@ export class CreatePersonDto {
   birthday: Date;
 
   @IsNotEmpty()
-  address: string;
+  @ValidateNested()
+  @Type(() => CreateAddressDto)
+  addressDto: CreateAddressDto
 }
