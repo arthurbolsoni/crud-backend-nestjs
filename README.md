@@ -9,7 +9,7 @@ Uma vez a aplicaçao rodando você terá acesso aos seguintes endpoints:
 POST -> http://localhost:3000/person -> cria uma entidade pessoa com base nas informaçãoes passadas atraves do body da requisição; caso entrego alguma incompatibilidade retorna a explicação do erro;
 
 ```
-curl -XPOST -H "Content-type: application/json" -d '{ "name": "name", "IdCard": "88888888888", "personType": 2, "birthday": "2013-07-13T18:46:01.933Z", "addressDto": { "CEP": "98495-258", "street": "Rua gonçalves", "number": 100, "district": "sagrada familia", "addressLineTwo": "", "city": "portoa alegre", "uf": "Rf", "addressType": 1 } }' 'http://localhost:3000/person/'
+curl -XPOST -H "Content-type: application/json" -d '{ "name": "name", "IdCard": "88888888888", "personType": 2, "birthday": "2013-07-13T18:46:01.933Z", "address": { "CEP": "98495-258", "street": "Rua gonçalves", "number": 100, "district": "sagrada familia", "addressLineTwo": "", "city": "portoa alegre", "uf": "Rf", "addressType": 1 } }' 'http://localhost:3000/person/'
 ```
 
 
