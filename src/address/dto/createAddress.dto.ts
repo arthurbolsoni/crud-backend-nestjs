@@ -19,7 +19,7 @@ import {
   MinLength,
 } from 'class-validator';
 import { MaxDateString } from 'src/common/decorators/MaxDateString.decorator';
-import { addressType } from '../enum/address.enum';
+import { AddressType } from '../enum/address.enum';
 
 //DTO type to create a new user.
 export class CreateAddressDto {
@@ -54,7 +54,7 @@ export class CreateAddressDto {
   uf: string;
 
   @IsNotEmpty()
-  @IsEnum(addressType)
+  @IsEnum(AddressType)
   @IsInt()
-  tipo: addressType;
+  tipo: AddressType;
 }

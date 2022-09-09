@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { addressType } from '../enum/address.enum';
+import { AddressType } from '../enum/address.enum';
 
 @Entity()
 export class Address {
@@ -10,25 +10,25 @@ export class Address {
   CEP: string;
 
   @Column()
-  logradouro: string;
+  street: string;
 
   @Column('int')
-  numero: number;
+  number: number;
 
   @Column()
-  bairro: string;
+  district: string;
 
   @Column()
-  complemento: string;
+  AddressLineTwo: string;
 
   @Column()
-  cidade: string;
+  city: string;
 
   @Column()
   uf: string;
 
   @Column()
-  tipo: addressType;
+  addressType: AddressType;
 
   constructor(partial: Partial<Address>) {
     Object.assign(this, partial);

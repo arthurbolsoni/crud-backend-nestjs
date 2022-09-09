@@ -21,23 +21,23 @@ import { personType } from '../enum/person.enum';
 export class CreatePersonDto {
   @IsNotEmpty()
   @MaxLength(150)
-  nome: string;
+  name: string;
 
   //criar uma validaçao regex
   @IsNotEmpty()
   @Length(11, 14)
-  numDocumento: string;
+  IdCard: string;
 
   @IsNotEmpty()
   @IsEnum(personType)
   @IsInt()
-  tipo: personType;
+  personType: personType;
 
   @IsNotEmpty()
   @IsISO8601()
   @MaxDateString(new Date())
-  nascimentoData: Date;
+  birthday: Date;
 
-  // @IsNotEmpty()
-  // enderecoLista: Address;
+  @IsNotEmpty()
+  address: string;
 }

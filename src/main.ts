@@ -7,6 +7,7 @@ async function bootstrap() {
 
   //use the pipes to validation the endpoint data
   app.useGlobalPipes(new ValidationPipe());
+  app.migration
   await app.listen(3000);
 }
 bootstrap();

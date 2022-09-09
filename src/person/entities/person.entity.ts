@@ -1,3 +1,4 @@
+import { Address } from 'src/address/entities/address.entity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { personType } from '../enum/person.enum';
 
@@ -7,20 +8,20 @@ export class Person {
   id: number;
 
   @Column()
-  nome: string;
+  name: string;
 
   // @Column({ unique: true })
   @Column()
-  numDocumento: string;
+  IdCard: string;
 
   @Column('int')
-  tipo: personType;
+  personType: personType;
 
   @Column()
-  nascimentoData: Date;
+  birthday: Date;
 
-  // @Column()
-  // address?: string;
+  @Column()
+  address: string;
 
   constructor(partial: Partial<Person>) {
     Object.assign(this, partial);

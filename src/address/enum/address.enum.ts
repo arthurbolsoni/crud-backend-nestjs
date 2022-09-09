@@ -1,4 +1,4 @@
-export enum addressType {
-  residencial = 1,
-  comercial = 2,
+export enum AddressType {
+  home = 1,
+  Business = 2,
 }
