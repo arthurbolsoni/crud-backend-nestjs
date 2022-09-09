@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Console } from 'console';
 import { AddressService } from 'src/address/address.service';
 import { CreateAddressDto } from 'src/address/dto/createAddress.dto';
+import { UpdateAddressDto } from 'src/address/dto/updateAddress.dto';
 import { Address } from 'src/address/entities/address.entity';
 import { Repository } from 'typeorm';
 import { CreatePersonDto } from './dto/createPerson.dto';
@@ -18,9 +19,10 @@ export class PersonService {
 
   //create a person on the database using the validated data from dto type
   async create(createPersonDto: CreatePersonDto) {
-    const address = await this.addressService.create({...createPersonDto.address})
+    const addressSaved = await this.addressService.create({...createPersonDto.address})
 
-    const person = new Person({ ...createPersonDto, addresses: [address]});
+    const { address, ...dtoPerson } = createPersonDto;
+    const person = new Person({ ...dtoPerson, addresses: [addressSaved]});
     return await this.personRepository.save(person);
   }
 
@@ -61,7 +63,7 @@ export class PersonService {
   //seek for person by id and delete it
   async remove(id: number) {
     const person = await this.findOneById(id);
-    const removed = await this.personRepository.remove(person);
+    const removed = await this.personRepository.softDelete(person);
     if (removed) return 'Person was removed with success!';
   }
 }

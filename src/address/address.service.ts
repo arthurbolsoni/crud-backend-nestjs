@@ -14,8 +14,11 @@ export class AddressService {
   async create(addressDto: CreateAddressDto): Promise<Address> {
     return await this.addressPepository.create({ ...addressDto });
   }
-  async update(id: number, updateDto: UpdateAddressDto): Promise<boolean> {
-    const updated = await this.addressPepository.update(id, { ...updateDto });
+  async update(updateDto: UpdateAddressDto): Promise<boolean> {
+    console.log(updateDto);
+    const Id = updateDto.id;
+    const {id, ...dtoUpdate} = updateDto;
+    const updated = await this.addressPepository.update(Id, { ...dtoUpdate });
     return Boolean(updated.affected);
   }
 }

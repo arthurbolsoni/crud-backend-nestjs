@@ -10,6 +10,7 @@ export class Person {
   @Column()
   name: string;
 
+  //fazer a verificação de cpf e cnpg.
   @Column({ unique: true })
   IdCard: string;
 
