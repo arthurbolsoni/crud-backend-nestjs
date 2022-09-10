@@ -6,6 +6,7 @@ import {
   IsEnum,
   IsInt,
   IsISO8601,
+  isNotEmpty,
   IsNotEmpty,
   IsNumberString,
   IsOptional,
@@ -29,32 +30,25 @@ export class CreateAddressDto {
   @IsLengthEqual(9)
   CEP: string;
 
-  @IsNotEmpty()
   @IsString()
   street: string;
 
-  @IsNotEmpty()
   @IsInt()
   number: number;
 
-  @IsNotEmpty()
   @IsString()
   district: string;
 
-  @IsOptional()
   @IsString()
   addressLineTwo: string;
 
-  @IsNotEmpty()
   @IsString()
   city: string;
 
-  @IsNotEmpty()
   @IsLengthEqual(2)
   @IsString()
   uf: string;
 
-  @IsNotEmpty()
   @IsEnum(AddressType)
   @IsInt()
   addressType: AddressType;

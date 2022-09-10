@@ -1,9 +1,9 @@
 import { Person } from 'src/person/entities/person.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { AddressType } from '../enum/address.enum';
 
 @Entity()
-export class Address {
+export class Address extends BaseEntity{
   @PrimaryGeneratedColumn()
   id?: number;
 
@@ -32,9 +32,10 @@ export class Address {
   addressType: AddressType;
 
   @ManyToOne(() => Person, person => person.addresses)
-  person: Person;
+  personId: Person;
 
   constructor(partial: Partial<Address>) {
+    super()
     Object.assign(this, partial);
   }
 }
