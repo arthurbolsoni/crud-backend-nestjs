@@ -4,5 +4,5 @@ import { CreateAddressDto } from './createAddress.dto';
 
 export class UpdateAddressDto extends PartialType(CreateAddressDto) {
     @IsNotEmpty()
-    id: string;
+    id: number;
 }

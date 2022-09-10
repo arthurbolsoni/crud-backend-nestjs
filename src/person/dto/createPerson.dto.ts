@@ -5,6 +5,7 @@ import {
   IsEnum,
   IsInt,
   IsISO8601,
+  isNotEmpty,
   IsNotEmpty,
   IsNumberString,
   Length,
@@ -44,5 +45,5 @@ export class CreatePersonDto {
   @IsNotEmpty()
   @ValidateNested()
   @Type(() => CreateAddressDto)
-  address: CreateAddressDto
+  addresses: CreateAddressDto[]
 }

@@ -1,9 +1,9 @@
 import { Address } from 'src/address/entities/address.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { personType } from '../enum/person.enum';
 
 @Entity()
-export class Person {
+export class Person extends BaseEntity{
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -11,7 +11,8 @@ export class Person {
   name: string;
 
   //fazer a verificação de cpf e cnpg.
-  @Column({ unique: true })
+  // @Column({ unique: true })
+  @Column()
   IdCard: string;
 
   @Column('int')
@@ -20,10 +21,20 @@ export class Person {
   @Column()
   birthday: Date;
 
-  @OneToMany(() => Address, (addresses) => addresses.person, {eager: true, cascade: true})
+  @OneToMany(() => Address, (addresses) => addresses.personId, {eager: true, cascade: true})
   addresses: Address[]
+  
+  @DeleteDateColumn({ type: 'timestamp' })
+  deletedAt: Date;
+
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ type: 'timestamp' })
+  updatedAt: Date;
 
   constructor(partial: Partial<Person>) {
+    super()
     Object.assign(this, partial);
   }
 }

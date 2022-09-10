@@ -17,10 +17,11 @@ import { PersonService } from './person.service';
 import { CreatePersonDto } from './dto/createPerson.dto';
 import { UpdatePersonDto } from './dto/updatePerson.dto';
 import { paramsDto } from './dto/params.dto';
+import { PartialBody } from 'src/common/decorators/partial-body.decorator';
 
 @Controller('person')
 export class PersonController {
-  constructor(private readonly personService: PersonService) {}
+  constructor(private readonly personService: PersonService) { }
 
   @Post()
   create(@Body() createPersonDto: CreatePersonDto) {
@@ -38,6 +39,7 @@ export class PersonController {
   }
 
   @Put(['', ':id'])
+  // update(@Param() param: paramsDto, @PartialBody() updatePersonDto: UpdatePersonDto) {
   update(@Param() param: paramsDto, @Body() updatePersonDto: UpdatePersonDto) {
     return this.personService.update(param.id, updatePersonDto);
   }

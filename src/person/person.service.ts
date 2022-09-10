@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Console } from 'console';
 import { AddressService } from 'src/address/address.service';
 import { CreateAddressDto } from 'src/address/dto/createAddress.dto';
-import { UpdateAddressDto } from 'src/address/dto/updateAddress.dto';
 import { Address } from 'src/address/entities/address.entity';
 import { Repository } from 'typeorm';
 import { CreatePersonDto } from './dto/createPerson.dto';
@@ -19,10 +18,10 @@ export class PersonService {
 
   //create a person on the database using the validated data from dto type
   async create(createPersonDto: CreatePersonDto) {
-    const addressSaved = await this.addressService.create({...createPersonDto.address})
+    const { addresses, ...dtoPerson } = createPersonDto;
+    // const addressSaved = await this.addressService.create({ ...addresses })
 
-    const { address, ...dtoPerson } = createPersonDto;
-    const person = new Person({ ...dtoPerson, addresses: [addressSaved]});
+    const person = new Person({ ...dtoPerson, addresses: addresses as Address[] });
     return await this.personRepository.save(person);
   }
 
@@ -52,9 +51,11 @@ export class PersonService {
   }
 
   async update(id: number, updatePersonDto: UpdatePersonDto) {
-    const updatedPerson = await this.personRepository.update(id, {
-      ...updatePersonDto
-    });
+    const { addresses, ...dtoPerson } = updatePersonDto;
+    if(addresses) await this.addressService.updateByRelation(addresses, id, 'personId');
+
+    const updatedPerson = await this.personRepository.update(id, new Person({ ...dtoPerson }));
+
     if (updatedPerson.affected) return 'Person was updated with success!';
 
     throw new HttpException('Person id not found', HttpStatus.NOT_FOUND);
@@ -63,7 +64,7 @@ export class PersonService {
   //seek for person by id and delete it
   async remove(id: number) {
     const person = await this.findOneById(id);
-    const removed = await this.personRepository.softDelete(person);
+    const removed = await this.personRepository.softDelete(id);
     if (removed) return 'Person was removed with success!';
   }
 }

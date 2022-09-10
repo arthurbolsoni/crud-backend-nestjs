@@ -9,7 +9,7 @@ Uma vez a aplicaçao rodando você terá acesso aos seguintes endpoints:
 POST -> http://localhost:3000/person -> cria uma entidade pessoa com base nas informaçãoes passadas atraves do body da requisição; caso entrego alguma incompatibilidade retorna a explicação do erro;
 
 ```
-curl -XPOST -H "Content-type: application/json" -d '{ "name": "name", "IdCard": "88888888888", "personType": 2, "birthday": "2013-07-13T18:46:01.933Z", "address": { "CEP": "98495-258", "street": "Rua gonçalves", "number": 100, "district": "sagrada familia", "addressLineTwo": "", "city": "portoa alegre", "uf": "Rf", "addressType": 1 } }' 'http://localhost:3000/person/'
+curl -XPOST -d '{ "name": "joao", "IdCard": "888888888881", "personType": 2, "birthday": "2013-07-13T18:46:01.933Z", "addresses": [ { "CEP": "98495-258", "street": "Rua gonçalves", "number": 100, "district": "sagrada familia", "addressLineTwo": "", "city": "portoa alegre", "uf": "Rf", "addressType": 1 } ] }' 'http://localhost:3000/person/'
 ```
 
 
@@ -26,7 +26,7 @@ curl -XGET 'htpp://localhost:3000/person/1'
 ## Update informações
 PUT -> http://localhost:300/person/:inteiro -> enviando o numero de id, e um body com informações do objeto para atualização, será retornado a confirmação da edição; ou erro caso nao exista; ou erro caso nao seja um id valido.
 ```
-curl -XPUT -d '{ "name": "mudando de nome", }' 'htpp://localhost:3000/person/1'
+curl -XPUT -d '{ "name": "test", "personType": 1, "addresses": [ { "id": 1, "CEP": "11111-222" } ] }' 'http://localhost:3000/person/1'
 ```
 ## Delete pessoa
 DELETE -> http://localhost:300/person/:inteiro -> enviando o numero inteiro de id, será devolvido uma confirmção de exclução; ou erro caso nao exista; ou erro caso nao seja um id valido.
