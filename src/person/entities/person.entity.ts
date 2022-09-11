@@ -24,15 +24,6 @@ export class Person extends BaseEntity{
   @OneToMany(() => Address, (addresses) => addresses.personId, {eager: true, cascade: true})
   addresses: Address[]
   
-  @DeleteDateColumn({ type: 'timestamp' })
-  deletedAt: Date;
-
-  @CreateDateColumn({ type: 'timestamp' })
-  createdAt: Date;
-
-  @UpdateDateColumn({ type: 'timestamp' })
-  updatedAt: Date;
-
   constructor(partial: Partial<Person>) {
     super()
     Object.assign(this, partial);

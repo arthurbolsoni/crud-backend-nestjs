@@ -8,7 +8,9 @@ import {
   isNotEmpty,
   IsNotEmpty,
   IsNumberString,
+  IsString,
   Length,
+  Matches,
   maxDate,
   MaxDate,
   MaxLength,
@@ -17,6 +19,7 @@ import {
 } from 'class-validator';
 import { CreateAddressDto } from 'src/address/dto/createAddress.dto';
 import { Address } from 'src/address/entities/address.entity';
+import { IsCPForCNPJ } from 'src/common/decorators/IsCpforCnpj';
 import { MaxDateString } from 'src/common/decorators/MaxDateString.decorator';
 import { personType } from '../enum/person.enum';
 
@@ -29,7 +32,9 @@ export class CreatePersonDto {
 
   //criar uma validaçao regex
   @IsNotEmpty()
+  @IsCPForCNPJ()
   @Length(11, 14)
+  @IsString()
   IdCard: string;
 
   @IsNotEmpty()
