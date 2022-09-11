@@ -1,9 +1,10 @@
+import { Content } from 'src/common/entities/base.entity';
 import { Person } from 'src/person/entities/person.entity';
-import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { AddressType } from '../enum/address.enum';
 
 @Entity()
-export class Address extends BaseEntity{
+export class Address extends Content{
   @PrimaryGeneratedColumn()
   id?: number;
 
