@@ -52,7 +52,15 @@ export class PersonService {
 
   async update(id: number, updatePersonDto: UpdatePersonDto) {
     const { addresses, ...dtoPerson } = updatePersonDto;
-    if(addresses) await this.addressService.updateByRelation(addresses, id, 'personId');
+
+    const personFinded = await this.findOneById(id);
+    const addressList = addresses.filter(x => personFinded.addresses.find(y => x.id == y.id)); //filter all address
+    const person = new Person({ ...dtoPerson, id: +id });
+    if(addressList.length != 0) person.addresses = addressList as Address[];
+    return this.personRepository.save(person);
+
+    return;
+    if (addresses) await this.addressService.updateByRelation(addresses, id, 'personId');
 
     const updatedPerson = await this.personRepository.update(id, new Person({ ...dtoPerson }));
 
