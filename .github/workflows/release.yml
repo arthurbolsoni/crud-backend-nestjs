@@ -29,6 +29,13 @@ jobs:
       - run: npm install
       - run: npm run build
       
+      - name: Automatic Versioning
+        uses: nicupavel/action-files-version-increment@v3
+      - name: Get the output time
+        run: echo "The time was ${{ steps.versioning_job.outputs.time }}"
+      - name: Get list of modified files
+        run: echo "Modified files ${{ steps.versioning_job.outputs.modified_files }}"
+      
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -37,4 +44,4 @@ jobs:
           title: "Development Build"
           files: |
             LICENSE.txt
-            build/*.zip
+            dist/*.zip
