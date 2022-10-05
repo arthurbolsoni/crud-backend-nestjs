@@ -25,21 +25,17 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 16 
       - run: npm install
       - run: npm run build
       
-      - name: semantic-versioning-tag
-        uses: LongOddCode/semantic-versioning-tag@0.6.0
-        id: svt
-            
-      - name: validation and set params
-        run: |
-            echo ${{ steps.svt.outputs.major }}
-            echo ${{ steps.svt.outputs.minor }}
-            echo ${{ steps.svt.outputs.patch }}
-            echo ${{ steps.svt.outputs.prerelease }}
-            echo ${{ steps.svt.outputs.buildmetadata }}
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@main
+        with:
+          path: package.json
+      - name: Print version
+        run: echo ${{ steps.package-version.outputs.current-version}}
       
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
