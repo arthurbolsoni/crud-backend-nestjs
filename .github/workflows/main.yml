@@ -17,10 +17,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-
-      - name: Read package.json
-        uses: dutscher/read-package-json-endpoint-actions@v1.33.7
-        id: package-json-endpoint
-
-      - name: Show version number
-        run: echo "${{ steps.package-json-endpoint.outputs.endpoint }}"
+      - name: Get Package Version
+        id: get-package-version
+        uses: stevenbenitez/get-package-version-action@v1
+      - run: echo ${{ steps.get-package-version.outputs.version }}
