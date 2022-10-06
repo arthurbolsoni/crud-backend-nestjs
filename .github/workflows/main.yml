@@ -27,4 +27,4 @@ jobs:
         uses: martinbeentjes/npm-get-version-action@main
         with:
           path: ./
-      - run: echo ${{ steps.package-version.outputs.current-version} }}
+      - run: echo ${{ steps.package-version.outputs.current-version}}
