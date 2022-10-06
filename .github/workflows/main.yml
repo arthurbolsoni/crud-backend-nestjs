@@ -1,0 +1,28 @@
+name: Get version from package.json
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Get Package Version
+        id: get-package-version
+        uses: stevenbenitez/get-package-version-action@v1
+      - run: echo ${{ steps.get-package-version.outputs.version }}
+      
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@main
+      - run: echo ${{ steps.package-version.outputs.current-version}}
