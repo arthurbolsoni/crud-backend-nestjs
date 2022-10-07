@@ -18,3 +18,4 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - run: echo ${{ steps.release_info.outputs.VERSION }}
