@@ -32,7 +32,7 @@ jobs:
       - name: Set the value
         id: step_one
         run: |
-          echo "action_state=yellow" >> $GITHUB_ENV
+          echo "action_state=$(grep version package.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
       - name: Use the value
         id: step_two
         run: |
