@@ -29,7 +29,7 @@ jobs:
       - run: npm install
       - run: npm run build
       
-      - name: read package.json
+      - name: Read version
         run: |
           echo "version=$(grep version package.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
           
