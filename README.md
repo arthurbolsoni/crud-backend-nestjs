@@ -18,7 +18,7 @@ GET -> htpp://localhost:3000/person/ -> retorna todos os usuarios registrados
 curl -X GET -H "Content-Type: application/json" "http://localhost:3000/person"
 ```
 ## Retornar pela ID
-GET -> htpp://localhost:3000/person/:inteiro -> enviando o numero inteiro de id, será devolvido o usuario completo daquel id; ou erro caso nao exista; ou erro caso nao seja um id valido.
+GET -> htpp://localhost:3000/person/:inteiro -> enviando o numero inteirod de id, será devolvido o usuario completo daquel id; ou erro caso nao exista; ou erro caso nao seja um id valido.
 ```
 curl -X GET -H "Content-Type: application/json" "http://localhost:3000/person/1"
 ```
