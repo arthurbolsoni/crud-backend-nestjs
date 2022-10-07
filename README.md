@@ -23,7 +23,7 @@ GET -> htpp://localhost:3000/person/:inteiro -> enviando o numero inteirod de id
 curl -X GET -H "Content-Type: application/json" "http://localhost:3000/person/1"
 ```
 ## Update informações
-PUT -> http://localhost:300/person/:inteiro -> enviando o numero de id, e um body com informações do objeto para atualização, será retornado a confirmação da edição; ou erro caso nao exista; ou erro caso nao seja um id valido.
+PUT -> http://localhost:300/person/:inteiro -> enviando o numero de id, e umd body com informações do objeto para atualização, será retornado a confirmação da edição; ou erro caso nao exista; ou erro caso nao seja um id valido.
 ```
 curl -X PUT --header "Content-Type: application/json" -d '{ "name": "test", "personType": 1, "addresses": [ { "id": 1, "CEP": "11111-222" } ] }' 'http://localhost:3000/person/1'
 ```
