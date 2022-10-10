@@ -50,5 +50,5 @@ export class CreatePersonDto {
   @IsNotEmpty()
   @ValidateNested()
   @Type(() => CreateAddressDto)
-  addresses: CreateAddressDto[]
+  addresses: CreateAddressDto[];
 }

@@ -1,4 +1,4 @@
-import { DataSource } from "typeorm";
+import { DataSource } from 'typeorm';
 
 import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
@@ -18,7 +18,7 @@ export const AppDataSource = new DataSource({
   synchronize: false,
   migrationsRun: true,
   name: 'default',
-  entities: ["dist/**/*.entity.js"],
+  entities: ['dist/**/*.entity.js'],
   migrations: ['./src/orm/migration/*{.ts,.js}'],
   subscribers: ['./src/orm/subscriber/**/*{.ts,.js}'],
 });

@@ -1,4 +1,3 @@
-
 import { ParamDecoratorEnhancer } from '@nestjs/common';
 
 /**
@@ -14,7 +13,11 @@ export const paramTypeEnhancer: ParamDecoratorEnhancer = (
   // Typescript adds the "design:paramtypes" metadata with an array of class
   // types where the keys are the method argument index and the value is the
   // class type.
-  const paramTypes = Reflect.getOwnMetadata('design:paramtypes', target, propertyKey);
+  const paramTypes = Reflect.getOwnMetadata(
+    'design:paramtypes',
+    target,
+    propertyKey,
+  );
   // We can use the parameterIndex to retrieve the specific type we want.
   const metatype = paramTypes[parameterIndex];
   // Now, we assign the parameter type to the metadata at a key we know.

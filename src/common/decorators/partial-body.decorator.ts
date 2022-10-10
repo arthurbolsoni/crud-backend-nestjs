@@ -1,4 +1,10 @@
-import { ArgumentMetadata, createParamDecorator, ExecutionContext, HttpException, HttpStatus } from '@nestjs/common';
+import {
+  ArgumentMetadata,
+  createParamDecorator,
+  ExecutionContext,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { plainToClassFromExist, plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 import { paramTypeEnhancer } from './param-type.enhancer';
@@ -13,13 +19,14 @@ export const PartialBody = createParamDecorator(
   // and we will use that for validation instead of the metadata type found.
   async (data: unknown, ctx: ExecutionContext): Promise<any> => {
     // Determine the type, either explicitly provided or from the metadata.
-    const metatype = data ?? Reflect.getOwnMetadata('partialBodyType', ctx.getHandler());
+    const metatype =
+      data ?? Reflect.getOwnMetadata('partialBodyType', ctx.getHandler());
 
     // Validate partially.
     const request = ctx.switchToHttp().getRequest();
     const transformedValue = plainToInstance(metatype, request.body);
     const errors = await validate(transformedValue, {
-      skipUndefinedProperties: true
+      skipUndefinedProperties: true,
     });
 
     if (errors.length > 0) {

@@ -14,14 +14,17 @@ export class PersonService {
   constructor(
     @InjectRepository(Person) private personRepository: Repository<Person>,
     private addressService: AddressService,
-  ) { }
+  ) {}
 
   //create a person on the database using the validated data from dto type
   async create(createPersonDto: CreatePersonDto) {
     const { addresses, ...dtoPerson } = createPersonDto;
     // const addressSaved = await this.addressService.create({ ...addresses })
 
-    const person = new Person({ ...dtoPerson, addresses: addresses as Address[] });
+    const person = new Person({
+      ...dtoPerson,
+      addresses: addresses as Address[],
+    });
     return await this.personRepository.save(person);
   }
 
@@ -31,13 +34,13 @@ export class PersonService {
       relations: {
         addresses: true,
       },
-    })
+    });
   }
 
   async findOneById(id: number) {
     const person = await this.personRepository.findOne({
       where: {
-        id: id
+        id: id,
       },
       relations: ['addresses'],
     });
@@ -54,15 +57,21 @@ export class PersonService {
     const { addresses, ...dtoPerson } = updatePersonDto;
 
     const personFinded = await this.findOneById(id);
-    const addressList = addresses.filter(x => personFinded.addresses.find(y => x.id == y.id)); //filter all address
+    const addressList = addresses.filter((x) =>
+      personFinded.addresses.find((y) => x.id == y.id),
+    ); //filter all address
     const person = new Person({ ...dtoPerson, id: +id });
-    if(addressList.length != 0) person.addresses = addressList as Address[];
+    if (addressList.length != 0) person.addresses = addressList as Address[];
     return this.personRepository.save(person);
 
     return;
-    if (addresses) await this.addressService.updateByRelation(addresses, id, 'personId');
+    if (addresses)
+      await this.addressService.updateByRelation(addresses, id, 'personId');
 
-    const updatedPerson = await this.personRepository.update(id, new Person({ ...dtoPerson }));
+    const updatedPerson = await this.personRepository.update(
+      id,
+      new Person({ ...dtoPerson }),
+    );
 
     if (updatedPerson.affected) return 'Person was updated with success!';
 

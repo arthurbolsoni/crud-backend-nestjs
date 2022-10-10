@@ -21,7 +21,7 @@ import { PartialBody } from 'src/common/decorators/partial-body.decorator';
 
 @Controller('person')
 export class PersonController {
-  constructor(private readonly personService: PersonService) { }
+  constructor(private readonly personService: PersonService) {}
 
   @Post()
   create(@Body() createPersonDto: CreatePersonDto) {

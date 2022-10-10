@@ -3,6 +3,6 @@ import { IsNotEmpty } from 'class-validator';
 import { CreateAddressDto } from './createAddress.dto';
 
 export class UpdateAddressDto extends PartialType(CreateAddressDto) {
-    @IsNotEmpty()
-    id: number;
+  @IsNotEmpty()
+  id: number;
 }

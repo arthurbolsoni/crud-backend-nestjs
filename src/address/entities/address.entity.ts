@@ -1,10 +1,19 @@
 import { Content } from 'src/common/entities/base.entity';
 import { Person } from 'src/person/entities/person.entity';
-import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { AddressType } from '../enum/address.enum';
 
 @Entity()
-export class Address extends Content{
+export class Address extends Content {
   @PrimaryGeneratedColumn()
   id?: number;
 
@@ -32,11 +41,11 @@ export class Address extends Content{
   @Column()
   addressType: AddressType;
 
-  @ManyToOne(() => Person, person => person.addresses)
+  @ManyToOne(() => Person, (person) => person.addresses)
   personId: Person;
 
   constructor(partial: Partial<Address>) {
-    super()
+    super();
     Object.assign(this, partial);
   }
 }

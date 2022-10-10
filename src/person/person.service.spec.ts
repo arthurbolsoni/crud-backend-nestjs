@@ -24,5 +24,3 @@ describe('PersonService', () => {
     expect(service).toBeDefined();
   });
 });
-
-

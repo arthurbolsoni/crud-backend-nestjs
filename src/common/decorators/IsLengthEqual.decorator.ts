@@ -21,12 +21,14 @@ export function IsLengthEqual(
       options: validationOptions,
       validator: {
         validate(value: any, args: ValidationArguments): boolean {
-          if(value == undefined) return;
+          if (value == undefined) return;
           return +value.length == +args.constraints[0];
         },
         defaultMessage: buildMessage(
-          (eachPrefix) => 'The number of $property ' +
-            eachPrefix + 'need have ' +
+          (eachPrefix) =>
+            'The number of $property ' +
+            eachPrefix +
+            'need have ' +
             '$constraint1 of length',
           validationOptions,
         ),
