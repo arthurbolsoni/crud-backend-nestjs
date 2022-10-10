@@ -17,7 +17,7 @@ import { PersonService } from './person.service';
 import { CreatePersonDto } from './dto/createPerson.dto';
 import { UpdatePersonDto } from './dto/updatePerson.dto';
 import { paramsDto } from './dto/params.dto';
-import { PartialBody } from 'src/common/decorators/partial-body.decorator';
+import { PartialBody } from 'common/decorators/partial-body.decorator';
 
 @Controller('person')
 export class PersonController {

@@ -19,8 +19,8 @@ import {
 } from 'class-validator';
 import { CreateAddressDto } from 'src/address/dto/createAddress.dto';
 import { Address } from 'src/address/entities/address.entity';
-import { IsCPForCNPJ } from 'src/common/decorators/IsCpforCnpj';
-import { MaxDateString } from 'src/common/decorators/MaxDateString.decorator';
+import { IsCPForCNPJ } from 'common/decorators/IsCpforCnpj';
+import { MaxDateString } from 'common/decorators/MaxDateString.decorator';
 import { personType } from '../enum/person.enum';
 
 //DTO type to create a new user.

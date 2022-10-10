@@ -20,8 +20,8 @@ import {
   MinDate,
   MinLength,
 } from 'class-validator';
-import { IsLengthEqual } from 'src/common/decorators/IsLengthEqual.decorator';
-import { MaxDateString } from 'src/common/decorators/MaxDateString.decorator';
+import { IsLengthEqual } from 'common/decorators/IsLengthEqual.decorator';
+import { MaxDateString } from 'common/decorators/MaxDateString.decorator';
 import { AddressType } from '../enum/address.enum';
 
 //DTO type to create a new user.

@@ -1,5 +1,5 @@
 import { Address } from 'src/address/entities/address.entity';
-import { Content } from 'src/common/entities/base.entity';
+import { Content } from 'common/entities/base.entity';
 import {
   BaseEntity,
   Column,

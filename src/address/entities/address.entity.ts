@@ -1,4 +1,4 @@
-import { Content } from 'src/common/entities/base.entity';
+import { Content } from 'common/entities/base.entity';
 import { Person } from 'src/person/entities/person.entity';
 import {
   BaseEntity,
